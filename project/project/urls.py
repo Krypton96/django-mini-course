@@ -18,17 +18,17 @@ from django.contrib import admin
 from django.urls import path
 from rest_framework.routers import SimpleRouter
 
-from orders.views import order_pages, OrderView
+from orders.views import order_pages, OrderView, orders_app
 
 router = SimpleRouter()
 
-router.register('api/orders', OrderView)
+router.register('api/orders', OrderView) # http://127.0.0.1:8000/api/orders/?format=json
 
-# http://127.0.0.1:8000/api/orders/?format=json
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', order_pages),
+    path('orders_page/', orders_app), # http://127.0.0.1:8000/orders_page/
 ]
 
 urlpatterns += router.urls
