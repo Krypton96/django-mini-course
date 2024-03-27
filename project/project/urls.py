@@ -16,10 +16,19 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from rest_framework.routers import SimpleRouter
 
-from orders.views import order_pages
+from orders.views import order_pages, OrderView
+
+router = SimpleRouter()
+
+router.register('api/orders', OrderView)
+
+# http://127.0.0.1:8000/api/orders/?format=json
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', order_pages),
 ]
+
+urlpatterns += router.urls
